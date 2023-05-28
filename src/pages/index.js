@@ -24,66 +24,18 @@ export default function Home({ allPostsData }) {
       <section>
         <h2>📝エンジニアのブログ</h2>
         <div className={styles.grid}>
-          <article>
-            <Link href="/">
-              <img
-                src="./images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/">
-              <h3 className={utilStyle.boldText} href="/">
-                SSGとSSRの違いとは?
-              </h3>
-              <br />
-              <small className={utilStyle.lightText}>投稿日時</small>
-            </Link>
-          </article>
-          <article>
-            <Link href="/">
-              <img
-                src="./images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/">
-              <h3 className={utilStyle.boldText} href="/">
-                SSGとSSRの違いとは?
-              </h3>
-              <br />
-              <small className={utilStyle.lightText}>投稿日時</small>
-            </Link>
-          </article>
-          <article>
-            <Link href="/">
-              <img
-                src="./images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/">
-              <h3 className={utilStyle.boldText} href="/">
-                SSGとSSRの違いとは?
-              </h3>
-              <br />
-              <small className={utilStyle.lightText}>投稿日時</small>
-            </Link>
-          </article>
-          <article>
-            <Link href="/">
-              <img
-                src="./images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/">
-              <h3 className={utilStyle.boldText} href="/">
-                SSGとSSRの違いとは?
-              </h3>
-              <br />
-              <small className={utilStyle.lightText}>投稿日時</small>
-            </Link>
-          </article>
+          {allPostsData.map(({ id, title, date, thumbnail }) => (
+            <article key={id}>
+              <Link href={`/posts/${id}`}>
+                <img src={`${thumbnail}`} className={styles.thumbnailImage} />
+              </Link>
+              <Link href={`/posts/${id}`}>
+                <h3 className={utilStyle.boldText}>{title}</h3>
+                <br />
+                <small className={utilStyle.lightText}>{date}</small>
+              </Link>
+            </article>
+          ))}
         </div>
       </section>
     </Layout>
