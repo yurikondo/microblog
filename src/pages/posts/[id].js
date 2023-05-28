@@ -11,6 +11,10 @@ export async function getStaticPath() {
   };
 }
 
+export function getStaticProps({params}){
+  
+}
+
 export default function Post() {
   return <Layout>どう的ルーティング</Layout>;
 }
