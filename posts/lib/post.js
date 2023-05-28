@@ -1,26 +1,30 @@
 import path from "path";
 import fs from "fs";
-import matter from "matter";
+import matter from "gray-matter";
 
-//レッスン28
-const postsDirectry = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "posts");
 
-//mdファイルのデータを取り出す
+//mdファイルのデータを日付順に取り出す(トップページのブログ一覧出力で使う)
 export function getPostsData() {
-  const fileNames = fs.readdirSync(postsDirectry);
-  const allPostData = fileNames.map((fileName) => {
+  // /posts配下のファイル名を取得
+  const fileNames = fs.readdirSync(postsDirectory);
+  // console.log(fileNames);
+  const allPostsData = fileNames.map((fileName) => {
+    // idを取得するためにファイル名の拡張子を除外
     const id = fileName.replace(/\.md$/, "");
 
     //マークダウンファイルを文字列として読み取る
-    const fullPath = path.join(postsDirectry, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf-8");
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
 
+    //投稿のメタデータ部分を解析
     const matterResult = matter(fileContents);
 
-    //idとデータを返す
+    //idとデータを返す。
     return {
       id,
-      ...matterResult,
+      ...matterResult.data,
     };
   });
+  console.log(allPostsData);
 }
