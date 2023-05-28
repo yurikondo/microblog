@@ -31,9 +31,9 @@ export default function Home({ allPostsData }) {
               </Link>
               <Link href={`/posts/${id}`}>
                 <h3 className={utilStyle.boldText}>{title}</h3>
+              </Link>
                 <br />
                 <small className={utilStyle.lightText}>{date}</small>
-              </Link>
             </article>
           ))}
         </div>
